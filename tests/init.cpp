@@ -1,5 +1,5 @@
 #include "SortFile.hpp"
-#include <catch.hpp>
+#include <catch.cpp>
 #include <iostream>
 #include <string>
 #include <fstream>
