@@ -14,7 +14,6 @@ class SortFile
 {
 public:
     SortFile(string name_main_file);
-    auto division()->void;
     auto file_size(string name_file)->size_t;
     auto make_file(string name_file)->void;
     auto sort()->void;
