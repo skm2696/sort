@@ -2,8 +2,8 @@
 #include <iostream>
 #include "SortFile.h"
 #include <stdexcept>
-#ifndef STACK_CPP
-#define STACK_CPP
+#ifndef SORT_CPP
+#define SORT_CPP
 /*auto new_file(std::string file_name, uint_fast64_t file_size) -> void
 {
     std::string names[] = { "Ivan", "Ann", "Ksusha", "Dima", "Kolya", "Anton", "Viktor", "Olga" };
