@@ -1,4 +1,4 @@
-
+#include "SortFile.h"
 SorFile::~SortFile() {
 	file_names.clear();
 }
