@@ -1,28 +1,35 @@
 
 #pragma once
 
-#include <algorithm>
-#include <chrono>
-#include <fstream>
+#include "stdafx.h"
 #include <iostream>
+#include <fstream>
 #include <string>
-#include <sstream>
 #include <vector>
+#include <locale>
+#include <iterator>
+#include <algorithm>
 #include <cstdio>
-#include <cmath>
 
-struct data {
-	std::string last_name;
-	std::string first_name;
-	size_t year;
+
+
+using namespace std;
+
+class SortFile 
+{
+public:
+	SortFile(string name_main_file);
+	auto division()->void; // разделение файла на подфайлы
+	auto file_size(string name_file)->size_t;//проверка размера файла
+	auto make_file(string name_file)->void;//создание временных файлов
+	auto file_sort()->void;//конечная сортировка временных файлов в выходной файл
+	auto write_to_out(string line)->void;//запись в выходной файл
+	auto remove_temp_files()->void;//удаление временных файлов
+	~SortFile();
+private:
+	fstream file;
+	size_t buffer, count_of_files, closed_files;
+	bool out;
+	vector<string> lines;
+	vector<string> file_names;//имена временных файлов
 };
-
-void sortF(std::string const file_name, const std::string output_name, uint_fast64_t const memory_size);
-
-uint_fast64_t file_size(const std::string filename);
-
-void c_file(std::string file_name, uint_fast64_t file_size);
-
-std::string to_string(size_t sz);
-
-void mergeF(std::ifstream & first_file, std::ifstream & second_file, std::ofstream & sorted); 
