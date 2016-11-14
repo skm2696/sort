@@ -33,10 +33,10 @@ SortFile::SortFile(string name_main_file) :file(name_main_file), buffer(100), co
 	if (file.is_open())
 	{
 		out=true;
-		division();
+		sort();
 	}
 };
-auto SortFile::division()->void
+auto SortFile::sort()->void
 {
 	string line_of_file;
 	size_t temp_size_files = 0;
@@ -62,7 +62,41 @@ auto SortFile::division()->void
 		count_of_files++;
 		make_file(to_string(count_of_files) + ".txt");
 	}                             
-	sort();
+	ifstream *files_streams = new ifstream[count_of_files];
+	for (int i = 0; i < count_of_files; ++i)
+	{
+		files_streams[i].open(file_names[i]);
+	}            
+	string *top_line = new string[count_of_files];
+	for (int i = 0; i < count_of_files; ++i)
+	{
+		getline(files_streams[i], top_line[i]);
+	}          
+	while (out)
+	{
+		string temp_min_line = top_line[0];
+		int num_min_line = 0;            
+		for (int i = 0; i < count_of_files; ++i)
+		{
+			if (top_line[i] < temp_min_line)
+			{
+				temp_min_line = top_line[i];
+				num_min_line = i;
+			}
+		}
+		out_file(temp_min_line);
+		if (!files_streams[num_min_line].eof())
+		{
+			getline(files_streams[num_min_line], top_line[num_min_line]);
+		}
+		else 
+		{                
+			closed_files++;
+			if (closed_files == count_of_files) { out = false; };
+		}
+	}            
+	for(int i=0;i<count_of_files;++i) files_streams[i].close();            
+	remove_temp_files();
 };  
 auto SortFile::make_file(string name_file)->void
 {
@@ -108,48 +142,8 @@ auto SortFile::remove_temp_files()->void
 		}
 		else
 		{
-			cout << "Gj";
+			cout << "It's work";
 		}
 	} 
-}
-            
-            
-auto SortFile::sort()->void
-{
-	ifstream *files_streams = new ifstream[count_of_files];
-	for (int i = 0; i < count_of_files; ++i)
-	{
-		files_streams[i].open(file_names[i]);
-	}            
-	string *top_line = new string[count_of_files];
-	for (int i = 0; i < count_of_files; ++i)
-	{
-		getline(files_streams[i], top_line[i]);
-	}          
-	while (out)
-	{
-		string temp_min_line = top_line[0];
-		int num_min_line = 0;            
-		for (int i = 0; i < count_of_files; ++i)
-		{
-			if (top_line[i] < temp_min_line)
-			{
-				temp_min_line = top_line[i];
-				num_min_line = i;
-			}
-		}
-		out_file(temp_min_line);
-		if (!files_streams[num_min_line].eof())
-		{
-			getline(files_streams[num_min_line], top_line[num_min_line]);
-		}
-		else 
-		{                
-			closed_files++;
-			if (closed_files == count_of_files) { out = false; };
-		}
-	}            
-	for(int i=0;i<count_of_files;++i) files_streams[i].close();            
-	remove_temp_files();
-}
+}           
 #endif
