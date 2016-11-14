@@ -1,8 +1,8 @@
 #include "SortFile.h"
 auto new_file(std::string file_name, uint_fast64_t file_size) -> void
 {
-    string names[] = { "Ivan", "Ann", "Ksusha", "Dima", "Kolya", "Anton", "Viktor", "Olga" };
-    string surnames[] = { "Ivanov", "Petrov", "Sidorov",	"Tarasenko", "Sudarev", "Dmitriev",
+    std::string names[] = { "Ivan", "Ann", "Ksusha", "Dima", "Kolya", "Anton", "Viktor", "Olga" };
+    std::string surnames[] = { "Ivanov", "Petrov", "Sidorov",	"Tarasenko", "Sudarev", "Dmitriev",
         "Kudashov", "Bushuev", "Fedorov", "Ionov", "Zinin" };
     ofstream file;
     file.open(file_name); 
@@ -15,7 +15,7 @@ auto new_file(std::string file_name, uint_fast64_t file_size) -> void
 		file.close();
 	else
 	{
-		throw bad_exception();
+		throw std::bad_exception();
 	}
 }
 SortFile::~SortFile()
