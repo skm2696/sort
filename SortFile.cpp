@@ -3,7 +3,7 @@ auto new_file(std::string file_name, uint_fast64_t file_size) -> void
 {
     std::string names[] = { "Ivan", "Ann", "Ksusha", "Dima", "Kolya", "Anton", "Viktor", "Olga" };
     std::string surnames[] = { "Ivanov", "Petrov", "Sidorov",	"Tarasenko", "Sudarev", "Dmitriev",
-        "Kudashov", "Bushuev", "Fedorov", "Ionov", "Zinin" };
+        "Serebryakova", "Bushuev", "Fedorov", "Ionov", "Zinin" };
     ofstream file;
     file.open(file_name); 
         while (file.tellp() < file_size)
