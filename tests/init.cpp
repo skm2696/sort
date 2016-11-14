@@ -1,4 +1,4 @@
-#include "stack.hpp"
+#include "SortFile.cpp"
 #include <catch.hpp>
 #include <iostream>
 #include <string>
