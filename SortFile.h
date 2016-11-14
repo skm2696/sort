@@ -15,22 +15,23 @@
 
 using namespace std;
 
-class SortFile 
+
+class SortFile
 {
 public:
-	SortFile(string name_main_file);
-	auto division()->void; 
-	auto file_size(string name_file)->size_t;
-	auto make_file(string name_file)->void;
-	auto file_sort()->void;
-	auto write_to_out(string line)->void;
-	auto remove_temp_files()->void;
-	~SortFile();
+    SortFile(string name_main_file);
+    auto division()->void;
+    auto file_size(string name_file)->size_t;
+    auto make_file(string name_file)->void;
+    auto sort()->void;
+    auto out_file(string line)->void;
+    auto remove_temp_files()->void;
+    ~SortFile();
 private:
-	fstream file;
-	size_t buffer, count_of_files, closed_files;
-	bool out;
-	vector<string> lines;
-	vector<string> file_names;//имена временных файлов
+    fstream file;
+    size_t buffer, count_of_files, closed_files;
+    bool out;
+    vector<string> lines;
+    vector<string> file_names;
 };
-auto new_file(std::string file_name, uint_fast64_t file_size) -> void;
+
