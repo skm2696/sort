@@ -1,6 +1,4 @@
-
 #pragma once
-
 #include "stdafx.h"
 #include <iostream>
 #include <fstream>
@@ -10,12 +8,7 @@
 #include <iterator>
 #include <algorithm>
 #include <cstdio>
-
-
-
 using namespace std;
-
-
 class SortFile
 {
 public:
