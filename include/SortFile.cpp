@@ -112,9 +112,7 @@ auto SortFile::file_size(string name_file)->size_t
 }
 auto SortFile::out_file(string line)->void
 {
-	ofstream out("out.txt", ios::app);
-	if (!out.is_open())
-		throw;
+	ofstream file("out.txt", ios::app);
 	file << line << endl;
 	file.close();
 }
