@@ -5,9 +5,9 @@
 #include <fstream>
 using namespace std;
  
-SCENARIO("count", "[count]"){
-  SortFile obj("names.txt");
- ifstream file("sort.txt");
+SCENARIO("sort", "[sort]"){
+  SortFile obj("small.txt");
+ ifstream file("sort_small.txt");
  ifstream out("out.txt");
  bool p=true;
  string s1,s2;
