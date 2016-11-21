@@ -28,7 +28,6 @@ private:
 	bool out;
 	vector<string> lines;
 	vector<string> file_names;
-	priority_queue<Spair, vector<Spair>, Compare> queue;
 	multimap<string, size_t> map;
 };
 #include "SortFile.cpp"
