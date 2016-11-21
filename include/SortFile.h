@@ -5,11 +5,22 @@
 #include <fstream>
 #include <string>
 #include <vector>
-#include <map> 
+#include <queue> 
 #include <iterator>
 #include <algorithm>
 #include <cstdio>
 using namespace std;
+struct Spair {
+public:
+	int index;
+	string str;
+};
+struct Compare {
+	bool operator()(const Spair& a, const Spair& b) 
+	{
+		return a.str>b.str;
+	}
+};
 class SortFile
 {
 public:
@@ -20,13 +31,14 @@ public:
 	auto out_file(string line)->void;
 	auto remove_temp_files()->void;
 	~SortFile();
+	auto division() -> void;
 private:
-	fstream file;
+	fstream file, f;
 	size_t buffer, count_of_files, closed_files;
 	bool out;
 	vector<string> lines;
 	vector<string> file_names;
-	multimap<string, size_t> map;
+	priority_queue<Spair, vector<Spair>, Compare> queue;
 };
 #include "SortFile.cpp"
 #endif
