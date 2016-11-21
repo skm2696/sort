@@ -59,7 +59,7 @@ auto SortFile::file_size(string name_file)->size_t {
 }
 
 auto SortFile::out_file(string line)->void {
-	ofstream file("abc.txt", ios::app);
+	ofstream file("out.txt", ios::app);
 	file << line << endl;
 	file.close();
 
