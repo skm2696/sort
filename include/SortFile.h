@@ -6,21 +6,11 @@
 #include <string>
 #include <vector>
 #include <queue> 
+#include <map> 
 #include <iterator>
 #include <algorithm>
 #include <cstdio>
 using namespace std;
-struct Spair {
-public:
-	int index;
-	string str;
-};
-struct Compare {
-	bool operator()(const Spair& a, const Spair& b) 
-	{
-		return a.str>b.str;
-	}
-};
 class SortFile
 {
 public:
@@ -39,6 +29,7 @@ private:
 	vector<string> lines;
 	vector<string> file_names;
 	priority_queue<Spair, vector<Spair>, Compare> queue;
+	multimap<string, size_t> map;
 };
 #include "SortFile.cpp"
 #endif
