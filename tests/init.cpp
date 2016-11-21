@@ -8,7 +8,7 @@ using namespace std;
 SCENARIO("sort", "[sort]"){
   SortFile obj("small.txt");
  ifstream file("sort_small.txt");
- ifstream out("abc.txt");
+ ifstream out("out.txt");
  bool p=true;
  string s1,s2;
  while (!file.eof()&&!out.eof()){
