@@ -1,7 +1,8 @@
-
 #include <iostream>
 #include "SortFile.h"
 #include <stdexcept>
+#include <map> 
+#include <iterator>
 #ifndef SORT_CPP
 #define SORT_CPP
 auto new_file(std::string file_name, uint_fast64_t file_size) -> void
@@ -59,7 +60,7 @@ auto SortFile::file_size(string name_file)->size_t {
 }
 
 auto SortFile::out_file(string line)->void {
-	ofstream file("out.txt", ios::app);
+	ofstream file("abcd.txt", ios::app);
 	file << line << endl;
 	file.close();
 
@@ -82,29 +83,33 @@ auto SortFile::remove_temp_files()->void {
 
 auto SortFile::sort()->void {
 
-	Spair *sort = new Spair[count_of_files];
+	//Spair *sort = new Spair[count_of_files];
 	ifstream *streams = new ifstream[count_of_files];
+	string *top_line = new string[count_of_files];
 	for (int i = 0; i < count_of_files; ++i) {
 		streams[i].open(file_names[i]);
-		getline(streams[i], sort[i].str);
-		sort[i].index = i;
-		queue.push(sort[i]);
+		getline(streams[i], top_line[i]);
+		//sort[i].index = i;
+		map.insert(pair<string,size_t>(top_line[i], i));
 	}
 
 	while (out) {
-
-		int n = queue.top().index;
-		out_file(queue.top().str);
-
+		auto it = map.begin();
+		//int n = queue.top().index;
+		int n = (*it).second;
+		//out_file(queue.top().str);
+		out_file((*it).first);
 		if (!streams[n].eof()) {
-			getline(streams[n], sort[n].str);
-			queue.pop();
-			queue.push(sort[n]);
+			getline(streams[n], top_line[n]);
+			//queue.pop();
+			map.erase(map.begin());
+			//queue.push(sort[n]);
+			map.insert(pair<string, size_t>(top_line[n], n));
 		}
 		else {
 			closed_files++;
 			streams[n].close();
-			queue.pop();
+			map.erase(map.begin());
 
 			if (closed_files == count_of_files) { out = false; };
 
@@ -145,8 +150,17 @@ auto SortFile::division()->void {
 };
 /*int main()
 {
-	new_file("names.txt", 64);
+	new_file("names.txt", 120);
 	SortFile obj("names.txt");
+	const int N = 256;
+	char S[N] = { "" };
+	ifstream in1("abcd.txt"); 
+	while (!in1.eof()) 
+	{
+		in1.getline(S, N); 
+		cout << S << endl; 
+	}
+	in1.close();  
 	system("pause");
 	return 0;
 }*/
