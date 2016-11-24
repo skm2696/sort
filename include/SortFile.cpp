@@ -29,7 +29,7 @@ SortFile::~SortFile() {
 	file_names.clear();
 }
 
-SortFile::SortFile(string name_main_file) :file(name_main_file), buffer(100), count_of_files(0), closed_files(0) {
+SortFile::SortFile(string name_main_file, size_t buf, string name_out_file) :file(name_main_file), buffer(buf*1024*1024), count_of_files(0), closed_files(0), str(name_out_file) {
 	if (file.is_open()) {
 		out = true;
 		division();
@@ -60,7 +60,7 @@ auto SortFile::file_size(string name_file)->size_t {
 }
 
 auto SortFile::out_file(string line)->void {
-	ofstream file("file.txt", ios::app);
+	ofstream file(str, ios::app);
 	file << line << endl;
 	file.close();
 
