@@ -6,7 +6,7 @@
 using namespace std;
  
 SCENARIO("sort", "[sort]"){
-  SortFile obj("small.txt");
+  SortFile obj("small.txt",16 , "file.txt");
  ifstream file("sort_small.txt");
  ifstream out("file.txt");
  bool p=true;
