@@ -40,7 +40,7 @@ auto SortFile::make_file(string name_file)->void {
 	file_names.push_back(name_file);
 	std::sort(lines.begin(), lines.end());
 	ofstream temp(name_file);
-	/*for (auto i : lines)
+	for (auto i : lines)
 	{
 		temp << i;
 		if (i != *(--lines.end())) temp << endl;
